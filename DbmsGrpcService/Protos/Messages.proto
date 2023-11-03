@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package DbmsGrpc.Messages;
+
+import "Protos/Types.proto";
+import "Protos/Values.proto";
+
+message Column
+{
+	string Name = 1;
+	Types.Type Type = 2;
+}
+
+message Row
+{
+	int32 Id = 1;
+	repeated Values.Value Cells = 2;
+}
+
+message TableInfo
+{
+	int32 Id = 1;
+	string Name = 2;
+	TableDifferenceInfo TableDifferenceInfo = 3;
+}
+
+message Table
+{
+	int32 Id = 1;
+	string Name = 2;
+	repeated Column Columns = 3;
+	map<int32, Row> Rows = 4;
+	TableDifference TableDifference = 5;
+}
+
+message TableDifferenceInfo
+{
+	TableInfo LeftTableInfo = 1;
+	TableInfo RightTableInfo = 2;
+}
+
+message TableDifference {}
+
+message DatabaseInfo
+{
+	repeated TableInfo Tables = 1;
+	repeated TableInfo TableDifferences = 2;
+}

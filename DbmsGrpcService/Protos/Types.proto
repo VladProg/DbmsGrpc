@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package DbmsGrpc.Messages.Types;
+
+message Char {}
+message Color {}
+message ColorInvl
+{
+	uint32 R1 = 1;
+	uint32 R2 = 2;
+	uint32 G1 = 3;
+	uint32 G2 = 4;
+	uint32 B1 = 5;
+	uint32 B2 = 6;
+}
+message Integer {}
+message Real {}
+message String {}
+
+message Type
+{
+	oneof Instance
+	{
+		Char Char = 1;
+		Color Color = 2;
+		ColorInvl ColorInvl = 3;
+		Integer Integer = 4;
+		Real Real = 5;
+		String String = 6;
+	}
+}

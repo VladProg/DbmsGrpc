@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package DbmsGrpc;
+
+import "Protos/Messages.proto";
+import "google/protobuf/empty.proto";
+
+service DbmsProcessor
+{
+	rpc CreateDatabase(DbNameRequest) returns (google.protobuf.Empty);
+	rpc GetDatabase(DbNameRequest) returns (Messages.DatabaseInfo);
+	rpc DeleteDatabase(DbNameRequest) returns (google.protobuf.Empty);
+	rpc AddTable(AddTableRequest) returns (TableIdResponse);
+	rpc RemoveTable(TableReferenceRequest) returns (google.protobuf.Empty);
+	rpc GetTable(TableReferenceRequest) returns (Messages.Table);
+	rpc AddRow(AddRowRequest) returns (RowIdResponse);
+	rpc RemoveRow(RowReferenceRequest) returns (google.protobuf.Empty);
+	rpc ValidateCell(CellReferenceRequest) returns (google.protobuf.Empty);
+	rpc UpdateCell(UpdateCellRequest) returns (google.protobuf.Empty);
+	rpc GetTableDifference(TableDifferenceRequest) returns (Messages.Table);
+	rpc TableExists(TableReferenceRequest) returns (TableExistsResponse);
+}
+
+message DbNameRequest {
+  string DbName = 1;
+}
+
+message TableIdResponse {
+  int32 TableId = 1;
+}
+
+message AddTableRequest {
+  string DbName = 1;
+  string TableName = 2;
+  repeated Messages.Column Columns = 3;
+}
+
+message TableReferenceRequest {
+  string DbName = 1;
+  int32 TableId = 2;
+}
+
+message AddRowRequest {
+  string DbName = 1;
+  int32 TableId = 2;
+  repeated string Cells = 3;
+}
+
+message RowIdResponse {
+  int32 RowId = 1;
+}
+
+message RowReferenceRequest {
+  string DbName = 1;
+  int32 TableId = 2;
+  int32 RowId = 3;
+}
+
+message CellReferenceRequest {
+  string DbName = 1;
+  int32 TableId = 2;
+  int32 ColumnId = 3;
+  string Value = 4;
+}
+
+message UpdateCellRequest {
+  string DbName = 1;
+  int32 TableId = 2;
+  int32 RowId = 3;
+  int32 ColumnId = 4;
+  string Value = 5;
+}
+
+message TableDifferenceRequest {
+  string DbName = 1;
+  int32 LeftTableId = 2;
+  int32 RightTableId = 3;
+}
+
+message TableExistsResponse {
+  bool Exists = 1;
+}
