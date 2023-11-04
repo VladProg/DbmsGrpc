@@ -23,7 +23,8 @@
         public override DbmsGrpc.Messages.Types.Type ToMessage() =>
             new()
             {
-                String = new()
+                String = new(),
+                ToStr = ToString()
             };
     }
 }

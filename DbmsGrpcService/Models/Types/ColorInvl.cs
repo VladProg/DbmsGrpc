@@ -67,7 +67,8 @@
         public override DbmsGrpc.Messages.Types.Type ToMessage() =>
             new()
             {
-                ColorInvl = new() { R1 = R1, R2 = R2, G1 = G1, G2 = G2, B1 = B1, B2 = B2 }
+                ColorInvl = new() { R1 = R1, R2 = R2, G1 = G1, G2 = G2, B1 = B1, B2 = B2 },
+                ToStr = ToString()
             };
     }
 }

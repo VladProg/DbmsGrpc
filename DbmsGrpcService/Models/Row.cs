@@ -36,7 +36,7 @@ namespace DBMS.Models
             {
                 Id = Id
             };
-            message.Cells.AddRange(from cell in Cells select cell.ToMessage());
+            message.Cells.AddRange(from cell in Cells select cell.ToString());
             return message;
         }
     }

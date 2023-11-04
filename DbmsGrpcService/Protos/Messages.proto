@@ -3,7 +3,6 @@ syntax = "proto3";
 package DbmsGrpc.Messages;
 
 import "Protos/Types.proto";
-import "Protos/Values.proto";
 
 message Column
 {
@@ -14,7 +13,7 @@ message Column
 message Row
 {
 	int32 Id = 1;
-	repeated Values.Value Cells = 2;
+	repeated string Cells = 2;
 }
 
 message TableInfo

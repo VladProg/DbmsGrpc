@@ -19,11 +19,5 @@ namespace DBMS.Models.Values
 
         public override bool Equals(object? obj)
             => base.Equals(obj) && obj is String other && Val == other.Val;
-
-        public override DbmsGrpc.Messages.Values.Value ToMessage() =>
-            new()
-            {
-                String = new() { Val = Val }
-            };
     }
 }

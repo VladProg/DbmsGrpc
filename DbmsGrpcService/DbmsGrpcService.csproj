@@ -9,12 +9,10 @@
   <ItemGroup>
     <None Remove="Protos\Messages.proto" />
     <None Remove="Protos\Types.proto" />
-    <None Remove="Protos\Values.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\Messages.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\Values.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\Types.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\DbmsGrpc.proto" GrpcServices="Server" />
   </ItemGroup>

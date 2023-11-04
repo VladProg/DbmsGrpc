@@ -28,4 +28,5 @@ message Type
 		Real Real = 5;
 		String String = 6;
 	}
+	string ToStr = 7;
 }

@@ -13,7 +13,5 @@
 
         public override bool Equals(object? obj)
             => obj is Value other && Type.Equals(other.Type);
-
-        public abstract DbmsGrpc.Messages.Values.Value ToMessage();
     }
 }

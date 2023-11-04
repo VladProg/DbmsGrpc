@@ -31,11 +31,5 @@ namespace DBMS.Models.Values
 
         public override bool Equals(object? obj)
             => base.Equals(obj) && obj is Char other && Val == other.Val;
-
-        public override DbmsGrpc.Messages.Values.Value ToMessage() =>
-            new()
-            {
-                Char = new() { Val = Val }
-            };
     }
 }

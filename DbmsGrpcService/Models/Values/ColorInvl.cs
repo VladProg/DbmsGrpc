@@ -68,11 +68,5 @@ namespace DBMS.Models.Values
         public override bool Equals(object? obj) =>
             base.Equals(obj) && obj is ColorInvl other &&
             R == other.R && G == other.G && B == other.B;
-
-        public override DbmsGrpc.Messages.Values.Value ToMessage() =>
-            new()
-            {
-                ColorInvl = new() { R = R, G = G, B = B }
-            };
     }
 }

@@ -18,4 +18,23 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Protos\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="..\DbmsGrpcService\Protos\DbmsGrpc.proto" GrpcServices="Client">
+			<Link>Protos\DbmsGrpc.proto</Link>
+			<ProtoRoot>..\DbmsGrpcService</ProtoRoot>
+		</Protobuf>
+		<Protobuf Include="..\DbmsGrpcService\Protos\Messages.proto">
+			<Link>Protos\Messages.proto</Link>
+			<ProtoRoot>..\DbmsGrpcService</ProtoRoot>
+		</Protobuf>
+		<Protobuf Include="..\DbmsGrpcService\Protos\Types.proto">
+			<Link>Protos\Types.proto</Link>
+			<ProtoRoot>..\DbmsGrpcService</ProtoRoot>
+		</Protobuf>
+	</ItemGroup>
+
 </Project>
