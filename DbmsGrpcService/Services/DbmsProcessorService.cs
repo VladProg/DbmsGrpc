@@ -44,7 +44,11 @@ namespace DbmsGrpc.Services
             if (databases.ContainsKey(request.DbName))
                 throw new RpcException(new Status(StatusCode.AlreadyExists, $"Database '{request.DbName}' already exists"));
             else
-                databases[request.DbName] = new Database();
+            {
+                Database database = new();
+                database.AddTable("C#", Array.Empty<DBMS.Models.Column>());
+                databases[request.DbName] = database;
+            }
             return Task.FromResult(new Empty());
         }
 

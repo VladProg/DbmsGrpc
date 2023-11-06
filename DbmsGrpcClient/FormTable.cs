@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace DbmsWcfClient
@@ -34,8 +35,9 @@ namespace DbmsWcfClient
                 dataGridView.Columns.Add("", column.Name + "\n" + column.Type.ToStr);
             foreach (DataGridViewColumn column in dataGridView.Columns)
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            foreach (var row in table.Rows.Values)
-                dataGridView.Rows[dataGridView.Rows.Add(row.Cells.ToArray())].Tag = row.Id;
+            var sortedIds = table.Rows.Keys.OrderBy(id => id);
+            foreach (var id in sortedIds)
+                dataGridView.Rows[dataGridView.Rows.Add(table.Rows[id].Cells.ToArray())].Tag = id;
         }
 
         private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -80,7 +82,7 @@ namespace DbmsWcfClient
                     string[] cells = new string[dataGridView.Columns.Count];
                     for (int i = 0; i < dataGridView.Columns.Count; i++)
                         cells[i] = dgvRow.Cells[i].Value?.ToString() ?? "";
-                    dgvRow.Tag = client.AddRow(new() { DbName = dbName, TableId = TableInfo.Id, Cells = { cells } });
+                    dgvRow.Tag = client.AddRow(new() { DbName = dbName, TableId = TableInfo.Id, Cells = { cells } }).RowId;
                     if (Parent.FindForm() is FormDatabase parentForm)
                         parentForm.RefreshDifferences(TableInfo.Id);
                 }

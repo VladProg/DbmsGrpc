@@ -24,24 +24,18 @@ app.Run();
 
 public class LoggingInterceptor : Interceptor
 {
-    private readonly ILogger<LoggingInterceptor> _logger;
-
-    public LoggingInterceptor(ILogger<LoggingInterceptor> logger)
-    {
-        _logger = logger;
-    }
-
     public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
         TRequest request,
         ServerCallContext context,
         UnaryServerMethod<TRequest, TResponse> continuation)
     {
-        _logger.LogInformation($"Method: {context.Method}");
-        _logger.LogInformation($"Request: {request}");
+        Console.WriteLine("====================");
+        Console.WriteLine($"Method: {context.Method}");
+        Console.WriteLine($"Parameters: {request}");
 
         var response = await base.UnaryServerHandler(request, context, continuation);
 
-        _logger.LogInformation($"Response: {response}");
+        Console.WriteLine($"Response: {response}");
 
         return response;
     }

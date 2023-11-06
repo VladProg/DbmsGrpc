@@ -1,0 +1,1 @@
+python -m grpc_tools.protoc -I ../DbmsGrpcService/ --python_out=. --grpc_python_out=. ../DbmsGrpcService/Protos/*.proto

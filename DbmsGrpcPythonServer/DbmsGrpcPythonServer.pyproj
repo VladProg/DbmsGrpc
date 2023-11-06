@@ -1,0 +1,69 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>d059a17b-7df7-44d7-9f0a-386c38cc0e03</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>DbmsGrpcPythonServer.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>DbmsGrpcPythonServer</Name>
+    <RootNamespace>DbmsGrpcPythonServer</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DbmsGrpcPythonServer.py" />
+    <Compile Include="Models\Types\Char.py" />
+    <Compile Include="Models\Types\Color.py" />
+    <Compile Include="Models\Types\ColorInvl.py" />
+    <Compile Include="Models\Types\Integer.py" />
+    <Compile Include="Models\Types\Real.py" />
+    <Compile Include="Models\Types\String.py" />
+    <Compile Include="Models\Types\Type.py" />
+    <Compile Include="Models\Values\Char.py" />
+    <Compile Include="Models\Values\Color.py" />
+    <Compile Include="Models\Values\ColorInvl.py" />
+    <Compile Include="Models\Values\Integer.py" />
+    <Compile Include="Models\Values\Real.py" />
+    <Compile Include="Models\Values\String.py" />
+    <Compile Include="Models\Values\Value.py" />
+    <Compile Include="Protos\DbmsGrpc_pb2.py" />
+    <Compile Include="Protos\DbmsGrpc_pb2_grpc.py" />
+    <Compile Include="Protos\Messages_pb2.py" />
+    <Compile Include="Protos\Messages_pb2_grpc.py" />
+    <Compile Include="Protos\Types_pb2.py" />
+    <Compile Include="Protos\Types_pb2_grpc.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="build-proto.bat" />
+    <Content Include="Models\Column.py" />
+    <Content Include="Models\Database.py" />
+    <Content Include="Models\Row.py" />
+    <Content Include="Models\Table.py" />
+    <Content Include="Models\TableDifference.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Models\Types\" />
+    <Folder Include="Models\Values\" />
+    <Folder Include="Protos\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
