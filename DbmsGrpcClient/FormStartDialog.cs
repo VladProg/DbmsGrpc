@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 public class FormStartDialog : Form
 {
+    private TextBox urlTextBox;
     private TextBox openDbTextBox;
     private TextBox createDbTextBox;
     private TextBox deleteDbTextBox;
@@ -16,20 +17,38 @@ public class FormStartDialog : Form
     {
         Text = "DBMS";
         Width = 400;
-        Height = 200;
+        Height = 240;
+
+        Label urlLabel = new Label
+        {
+            Text = "Server URL:",
+            Top = 10,
+            Left = 10,
+            Width = 160
+        };
+        Controls.Add(urlLabel);
+
+        urlTextBox = new TextBox
+        {
+            Top = 10,
+            Left = 170,
+            Width = 190,
+            Text = "http://localhost:5000"
+        };
+        Controls.Add(urlTextBox);
 
         Label chooseActionLabel = new Label
         {
             Text = "Choose the action:",
-            Top = 10,
+            Top = 50,
             Left = 10,
             Width = 1000
         };
         Controls.Add(chooseActionLabel);
 
-        AddActionRow("Open database", Action.OPEN, 40, out openDbTextBox);
-        AddActionRow("Create database", Action.CREATE, 80, out createDbTextBox);
-        AddActionRow("Delete database", Action.DELETE, 120, out deleteDbTextBox);
+        AddActionRow("Open database", Action.OPEN, 80, out openDbTextBox);
+        AddActionRow("Create database", Action.CREATE, 120, out createDbTextBox);
+        AddActionRow("Delete database", Action.DELETE, 160, out deleteDbTextBox);
     }
 
     private void AddActionRow(string actionText, Action action, int top, out TextBox textBox)
@@ -76,13 +95,13 @@ public class FormStartDialog : Form
         };
     }
 
-    public static (Action action, string text)? ShowStartDialog()
+    public static (Action action, string text, string url)? ShowStartDialog()
     {
         using (FormStartDialog dialog = new FormStartDialog())
         {
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                return (dialog.SelectedAction, dialog.InputText);
+                return (dialog.SelectedAction, dialog.InputText, dialog.urlTextBox.Text);
             }
         }
         return null;

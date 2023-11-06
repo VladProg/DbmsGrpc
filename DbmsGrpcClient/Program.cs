@@ -22,7 +22,7 @@ namespace DbmsWcfClient
                 return;
             try
             {
-                using var channel = GrpcChannel.ForAddress("http://localhost:5000");
+                using var channel = GrpcChannel.ForAddress(result.Value.url);
                 var client = new DbmsGrpc.DbmsProcessor.DbmsProcessorClient(channel);
                 switch (result.Value.action)
                 {
